@@ -1,0 +1,60 @@
+
+
+<!-- // 검증조건 -->
+
+<html>
+
+    <head>
+        <title>test Suite</title>
+        <script>
+            // 테스팅 함수의 활용을 생각
+            // -> value 를 리턴하는 어떤 복잡한 로직의 함수를 검사할때 사용할수 있다.
+            
+            function assert(value, desc) {
+                //함수의 시작
+                var li = document.createElement("div")     
+                // -> HTML조작 태그를 지정해서 생성한 HTML을 변수에 담는다.
+                // -> 추가 조작이 있을 경우 식을 짧게 쓰면서 조작이 가능
+                
+                li.className = value ? "pass" : "fail";
+                // -> li 변수를 활용해서 태그에 접근, 변수가 없었다면 해당 변수에 해당하는 내용을 전부 써 야 함
+                // -> className 이라는 것을 활용 css class 를 부여 정확하게는 document.createElement.className 이다.
+                // -> 삼항연산자를 이용해서 value의 값이 참 거짓에 따라 참일때 pass 
+                
+                
+                li.appendChild(document.createTextNode(desc));
+                // -> 변수 li 에 대한 조작인데 뭐다 ? appendChild 다 
+                // -> appendChild Node.appendChild로 노드객체 의 메서드이다.
+                // -> 또한 createElement 는 document 객체의 메서드 로 써 노드 를 생성하는 메서드 이다.
+                // -> 그러므로 해당식은 변수 li 에 할당된 노드에 TextNode를 삽입하는 식이다.
+                
+                
+                document.getElementById("results").appendChild(li);
+                // -> html 에는 <ul id="results"></ul> 이거 하나 밖에 없지  말 그대로 접시
+                // -> 스크립트상에서 모든 조작을 마치고 html 접시를 찾아서 담는다. 즉 결과를 담는 코드.
+
+                //함수의 끝
+            }
+                // 함수 활용
+            window.onload = function() {
+                assert(true, "The test suite of boolean ture is running. success");
+                assert(false, "The test suite of boolean false is running. Fail!");
+                assert(1, "The test suite of int that one is running. success");
+                assert(0, "The test suite of int that zero is running. Fail!");
+                
+            };
+        
+        </script>
+
+        <style>
+            #results div.pass {color : green;}
+            #results div.fail { color : rgb(53, 28, 194);}
+            
+        </style>
+
+    </head>
+    <body>
+        <ul id="results"></ul>
+    </body>
+
+</html>
